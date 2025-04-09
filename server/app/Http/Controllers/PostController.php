@@ -16,7 +16,8 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        // Middleware tanımını routes/api.php dosyasında yapıyoruz,
+        // bu nedenle burada gerek yok, kaldırıyoruz
     }
 
     /**
@@ -164,6 +165,21 @@ class PostController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Post deleted successfully'
+        ]);
+    }
+
+    /**
+     * Get authenticated user's posts.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function userPosts()
+    {
+        $posts = Auth::user()->posts()->with('user:id,name,email')->latest()->get();
+
+        return response()->json([
+            'status' => 'success',
+            'posts' => $posts
         ]);
     }
 }

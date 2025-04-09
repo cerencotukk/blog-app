@@ -1,0 +1,358 @@
+{
+  "info": {
+    "_postman_id": "e46c2e5c-4f5a-4a0e-8c4e-1d1d46e9b5a0",
+    "name": "Blog API",
+    "description": "Laravel tabanlı blog API'si",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/register",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "register"
+              ]
+            },
+            "description": "Yeni kullanıcı kaydı oluşturur"
+          },
+          "response": []
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/auth/login",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            },
+            "description": "Kullanıcı girişi yapar ve token döndürür"
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/logout",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "logout"
+              ]
+            },
+            "description": "Kullanıcı çıkışı yapar"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/auth/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "auth",
+                "user"
+              ]
+            },
+            "description": "Giriş yapmış kullanıcı bilgisini getirir"
+          },
+          "response": []
+        }
+      ],
+      "description": "Kimlik doğrulama işlemleri"
+    },
+    {
+      "name": "Posts",
+      "item": [
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/posts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ]
+            },
+            "description": "Tüm blog yazılarını getirir"
+          },
+          "response": []
+        },
+        {
+          "name": "Get Single Post",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/posts/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "1"
+              ]
+            },
+            "description": "Belirli bir blog yazısını getirir"
+          },
+          "response": []
+        },
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Yeni Blog Yazısı\",\n    \"content\": \"Bu bir test blog yazısıdır.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/posts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "posts"
+              ]
+            },
+            "description": "Yeni bir blog yazısı oluşturur"
+          },
+          "response": []
+        },
+        {
+          "name": "Update Post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"title\": \"Güncellenmiş Blog Yazısı\",\n    \"content\": \"Bu blog yazısı güncellenmiştir.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/posts/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "1"
+              ]
+            },
+            "description": "Var olan bir blog yazısını günceller"
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/posts/1",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "posts",
+                "1"
+              ]
+            },
+            "description": "Bir blog yazısını siler"
+          },
+          "response": []
+        },
+        {
+          "name": "Get User Posts",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{base_url}}/api/user/posts",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "user",
+                "posts"
+              ]
+            },
+            "description": "Kullanıcının kendi blog yazılarını getirir"
+          },
+          "response": []
+        }
+      ],
+      "description": "Blog yazıları ile ilgili işlemler"
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here",
+      "type": "string"
+    }
+  ]
+}

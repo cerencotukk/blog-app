@@ -1,38 +1,52 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import { AuthProvider } from "./contexts/AuthContext";
+import Header from "./components/Header";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import BlogList from "./pages/BlogList";
+import BlogDetail from "./pages/BlogDetail";
+import BlogCreate from "./pages/BlogCreate";
+import BlogEdit from "./pages/BlogEdit";
+import Dashboard from "./pages/Dashboard";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  const login = (e) => {
-    e.preventDefault();
-
-    fetch("http://localhost:8000/api/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email: email, password: password }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .catch((err) => {
-        alert("Error: " + err);
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-  };
-
   return (
-    <div>
-      <h1 className="text-3xl font-bold text-red-500">Hello World</h1>
-
-      <form onSubmit={login}>
-        <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-        <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <AuthProvider>
+      <BrowserRouter>
+        <div className="min-h-screen flex flex-col bg-gray-50">
+          <Header />
+          <main className="flex-grow">
+            <Routes>
+              <Route path="/" element={<BlogList />} />
+              <Route path="/blog/:id" element={<BlogDetail />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              
+              <Route path="/dashboard" element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/blog/create" element={
+                <ProtectedRoute>
+                  <BlogCreate />
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/blog/edit/:id" element={
+                <ProtectedRoute>
+                  <BlogEdit />
+                </ProtectedRoute>
+              } />
+            </Routes>
+          </main>
+          <Toaster position="top-right" />
+        </div>
+      </BrowserRouter>
+    </AuthProvider>
   );
 }
 

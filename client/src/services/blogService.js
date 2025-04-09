@@ -107,4 +107,23 @@ export const deletePost = async (id) => {
     console.error(`Error deleting post ${id}:`, error);
     throw error;
   }
+};
+
+export const getUserPosts = async () => {
+  const token = localStorage.getItem("token");
+  
+  try {
+    const response = await fetch(`${API_URL}/user/posts`, {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) throw new Error('Kullanıcı gönderileri alınamadı');
+    
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching user posts:", error);
+    throw error;
+  }
 }; 

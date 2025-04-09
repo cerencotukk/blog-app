@@ -122,6 +122,15 @@ Bu API, blog uygulaması için gerekli tüm backend işlevlerini sağlar.
 - `PUT /api/posts/{id}` - Gönderiyi güncelle (kimlik doğrulama gerekli)
 - `DELETE /api/posts/{id}` - Gönderiyi sil (kimlik doğrulama gerekli)
 
-## Postman Koleksiyonu
+## Postman Koleksiyonu Kullanımı
 
-API'yi test etmek için `postman` klasöründeki koleksiyonu kullanabilirsiniz.
+API'yi test etmek için aşağıdaki adımları izleyin:
+
+1. `server/postman/blog_api.json` dosyasını Postman'e aktarın
+2. Koleksiyonun değişkenlerini düzenleyin:
+   - `base_url`: API'nizin çalıştığı URL (varsayılan: http://localhost:8000)
+3. Önce "Register" veya "Login" isteğini kullanarak bir token alın
+4. Dönen yanıttaki token'ı kopyalayın ve koleksiyon değişkenlerindeki `token` değişkenine ekleyin
+5. Artık kimlik doğrulama gerektiren istekleri kullanabilirsiniz
+
+Koleksiyon, tüm API endpointlerini içerir ve örneklerle birlikte gelmektedir.
