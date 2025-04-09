@@ -18,6 +18,13 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        // Eğer kullanıcı zaten giriş yapmışsa hata döndür
+        if (Auth::check()) {
+            return response()->json([
+                'error' => 'Zaten giriş yapmış durumdasınız.'
+            ], 400);
+        }
+
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
@@ -53,6 +60,13 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
+        // Eğer kullanıcı zaten giriş yapmışsa hata döndür
+        if (Auth::check()) {
+            return response()->json([
+                'error' => 'Zaten giriş yapmış durumdasınız.'
+            ], 400);
+        }
+
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required|string|min:6',

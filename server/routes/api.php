@@ -10,10 +10,17 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::post('login', [AuthController::class, 'login']);
-    Route::post('register', [AuthController::class, 'register']);
-    Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:api');
-    Route::get('user', [AuthController::class, 'user'])->middleware('auth:api');
+    // Guest routes - sadece giriş yapmamış kullanıcılar için
+    Route::middleware('guest:api')->group(function () {
+        Route::post('login', [AuthController::class, 'login']);
+        Route::post('register', [AuthController::class, 'register']);
+    });
+
+    // Auth routes - sadece giriş yapmış kullanıcılar için
+    Route::middleware('auth:api')->group(function () {
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'user']);
+    });
 });
 
 Route::get('posts', [PostController::class, 'index']);

@@ -1,8 +1,22 @@
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 
 function Header() {
   const { isAuthenticated, user, logout } = useAuth();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   return (
     <header className="bg-gradient-to-r from-blue-500 to-pink-400 text-gray-800 shadow-md">
@@ -30,21 +44,36 @@ function Header() {
                 Yeni Yazı
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <div className="relative group">
-                <button className="flex items-center hover:text-white transition-colors font-semibold">
+              <div className="relative" ref={dropdownRef}>
+                <button 
+                  onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                  className="flex items-center hover:text-white transition-colors font-semibold focus:outline-none"
+                >
                   <span>{user?.name}</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    className={`h-5 w-5 ml-1 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`} 
+                    viewBox="0 0 20 20" 
+                    fill="currentColor"
+                  >
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                   </svg>
                 </button>
-                <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10 hidden group-hover:block transform opacity-0 group-hover:opacity-100 transition-all duration-300 origin-top-right scale-95 group-hover:scale-100">
-                  <button 
-                    onClick={logout} 
-                    className="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors text-left font-medium"
+                {isDropdownOpen && (
+                  <div 
+                    className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10"
                   >
-                    Çıkış Yap
-                  </button>
-                </div>
+                    <button 
+                      onClick={() => {
+                        logout();
+                        setIsDropdownOpen(false);
+                      }} 
+                      className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors font-medium"
+                    >
+                      Çıkış Yap
+                    </button>
+                  </div>
+                )}
               </div>
             </>
           ) : (
