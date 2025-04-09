@@ -22,7 +22,7 @@ Modern bir blog uygulaması - React frontend ve Laravel backend.
 ### Backend
 - Laravel 11
 - JWT Authentication
-- SQLite veritabanı
+- SQLite veya MySQL veritabanı
 - RESTful API
 
 ## Kurulum
@@ -31,7 +31,7 @@ Modern bir blog uygulaması - React frontend ve Laravel backend.
 - Bun >= 1.0.0
 - PHP >= 8.2
 - Composer
-- SQLite
+- SQLite veya MySQL veritabanı
 
 ### Frontend (Client)
 

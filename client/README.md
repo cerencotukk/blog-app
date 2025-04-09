@@ -12,19 +12,20 @@ Blog API ile iletişim kuran modern bir React uygulaması.
 
 - React 19
 - React Router v6
-- Axios
 - Tailwind CSS
+- Vite
+- Bun
 
 ## Kurulum
 
 1. Bağımlılıkları yükleyin:
-   ```
-   npm install
+   ```bash
+   bun install
    ```
 
 2. Geliştirme sunucusunu başlatın:
-   ```
-   npm run dev
+   ```bash
+   bun dev
    ```
 
 ## Proje Yapısı
@@ -34,3 +35,4 @@ Blog API ile iletişim kuran modern bir React uygulaması.
 - `src/pages`: Sayfa bileşenleri
 - `src/services`: API iletişimi için servisler
 - `src/utils`: Yardımcı fonksiyonlar
+
