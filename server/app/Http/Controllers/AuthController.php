@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class AuthController extends Controller
 {
@@ -121,6 +122,58 @@ class AuthController extends Controller
             'token_type' => 'bearer',
             'expires_in' => Auth::factory()->getTTL() * 60,
             'user' => Auth::user()
+        ]);
+    }
+
+    /**
+     * Update user profile
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
+        
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id)
+            ],
+            'current_password' => 'required_with:new_password',
+            'new_password' => 'nullable|min:6',
+            'new_password_confirmation' => 'required_with:new_password|same:new_password'
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json($validator->errors(), 422);
+        }
+
+        // Şifre değişikliği varsa, mevcut şifreyi kontrol et
+        if ($request->new_password) {
+            if (!Hash::check($request->current_password, $user->password)) {
+                return response()->json([
+                    'error' => 'Mevcut şifre yanlış'
+                ], 422);
+            }
+        }
+
+        // Kullanıcı bilgilerini güncelle
+        $user->name = $request->name;
+        $user->email = $request->email;
+        
+        // Şifre değişikliği varsa güncelle
+        if ($request->new_password) {
+            $user->password = Hash::make($request->new_password);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'Profil başarıyla güncellendi',
+            'user' => $user
         ]);
     }
 }

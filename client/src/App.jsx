@@ -10,6 +10,7 @@ import BlogCreate from "./pages/BlogCreate";
 import BlogEdit from "./pages/BlogEdit";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -39,6 +40,12 @@ function App() {
               <Route path="/blog/edit/:id" element={
                 <ProtectedRoute>
                   <BlogEdit />
+                </ProtectedRoute>
+              } />
+              
+              <Route path="/profile" element={
+                <ProtectedRoute>
+                  <Profile />
                 </ProtectedRoute>
               } />
             </Routes>
