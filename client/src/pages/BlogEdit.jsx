@@ -99,13 +99,13 @@ function BlogEdit() {
           <div className="flex items-center justify-between pt-4">
             <Link
               to={`/blog/${id}`}
-              className="text-blue-600 hover:underline"
+              className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 hover:scale-105 transition-all shadow-sm hover:shadow font-semibold"
             >
               İptal
             </Link>
             <button 
               type="submit" 
-              className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors"
+              className="bg-gradient-to-r from-blue-500 to-pink-400 text-white px-6 py-3 rounded-md hover:opacity-90 hover:scale-105 transition-all shadow-sm hover:shadow font-semibold"
               disabled={isSubmitting}
             >
               {isSubmitting ? "Kaydediliyor..." : "Güncelle"}

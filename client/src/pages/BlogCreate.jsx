@@ -79,16 +79,18 @@ function BlogCreate() {
             <div className="flex items-center justify-between pt-4">
               <Link
                 to="/"
-                className="text-blue-600 hover:text-blue-800 flex items-center group transition-colors"
+                className="bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-700 hover:scale-105 transition-all shadow-sm hover:shadow font-semibold"
               >
-                <svg className="w-4 h-4 mr-1 transform transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-                </svg>
-                İptal
+                <div className="flex items-center">
+                  <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  İptal
+                </div>
               </Link>
               <button 
                 type="submit" 
-                className="bg-blue-600 text-white px-6 py-3 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all shadow-sm hover:shadow transform hover:-translate-y-0.5 active:translate-y-0"
+                className="bg-gradient-to-r from-blue-500 to-pink-400 text-white px-6 py-3 rounded-md hover:opacity-90 hover:scale-105 transition-all shadow-sm hover:shadow font-semibold"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (

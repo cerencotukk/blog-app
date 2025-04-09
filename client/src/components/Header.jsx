@@ -15,23 +15,23 @@ function Header() {
         </Link>
         
         <nav className="flex items-center space-x-4">
-          <Link to="/" className="relative py-2 hover:text-pink-600 transition-colors group font-semibold">
+          <Link to="/" className="relative py-2 hover:text-white transition-colors group font-semibold">
             Ana Sayfa
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
           </Link>
           
           {isAuthenticated ? (
             <>
-              <Link to="/dashboard" className="relative py-2 hover:text-pink-600 transition-colors group font-semibold">
+              <Link to="/dashboard" className="relative py-2 hover:text-white transition-colors group font-semibold">
                 Kontrol Paneli
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
               </Link>
-              <Link to="/blog/create" className="relative py-2 hover:text-pink-600 transition-colors group font-semibold">
+              <Link to="/blog/create" className="relative py-2 hover:text-white transition-colors group font-semibold">
                 Yeni Yazı
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
               </Link>
               <div className="relative group">
-                <button className="flex items-center hover:text-pink-600 transition-colors font-semibold">
+                <button className="flex items-center hover:text-white transition-colors font-semibold">
                   <span>{user?.name}</span>
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 ml-1 transition-transform duration-300 group-hover:rotate-180" viewBox="0 0 20 20" fill="currentColor">
                     <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -49,7 +49,7 @@ function Header() {
             </>
           ) : (
             <>
-              <Link to="/login" className="relative py-2 hover:text-pink-600 transition-colors group font-semibold">
+              <Link to="/login" className="relative py-2 hover:text-white transition-colors group font-semibold">
                 Giriş Yap
                 <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gray-800 transition-all duration-300 group-hover:w-full"></span>
               </Link>

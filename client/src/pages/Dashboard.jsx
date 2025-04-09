@@ -66,7 +66,7 @@ function Dashboard() {
           <h1 className="text-3xl font-bold text-gray-800">Kontrol Paneli</h1>
           <Link
             to="/blog/create"
-            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition-colors"
+            className="bg-gradient-to-r from-blue-500 to-pink-400 text-white px-4 py-2 rounded-md hover:opacity-90 hover:scale-105 transition-all shadow-sm hover:shadow font-semibold"
           >
             Yeni Yazı Oluştur
           </Link>
@@ -90,22 +90,22 @@ function Dashboard() {
                         {new Date(post.created_at).toLocaleDateString('tr-TR')}
                       </p>
                     </div>
-                    <div className="space-x-2">
+                    <div className="space-x-3">
                       <Link
                         to={`/blog/${post.id}`}
-                        className="inline-block text-blue-600 hover:text-blue-800"
+                        className="inline-flex items-center bg-gradient-to-r from-indigo-500 to-purple-500 text-white px-3 py-1.5 rounded-md hover:opacity-90 hover:scale-105 transition-all shadow-sm hover:shadow text-sm font-semibold"
                       >
                         Görüntüle
                       </Link>
                       <Link
                         to={`/blog/edit/${post.id}`}
-                        className="inline-block text-green-600 hover:text-green-800"
+                        className="inline-flex items-center bg-gradient-to-r from-pink-400 to-rose-400 text-white px-3 py-1.5 rounded-md hover:opacity-90 hover:scale-105 transition-all shadow-sm hover:shadow text-sm font-semibold"
                       >
                         Düzenle
                       </Link>
                       <button
                         onClick={() => handleDelete(post.id)}
-                        className="inline-block text-red-600 hover:text-red-800"
+                        className="inline-flex items-center bg-gray-800 text-white px-3 py-1.5 rounded-md hover:bg-gray-700 hover:scale-105 transition-all shadow-sm hover:shadow text-sm font-semibold"
                       >
                         Sil
                       </button>

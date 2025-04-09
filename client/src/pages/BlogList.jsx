@@ -51,7 +51,6 @@ function BlogList() {
       <h1 className="text-4xl font-bold mb-12 text-center text-gray-800 relative">
         <span className="relative inline-block">
           Son Blog Yazıları
-          <span className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-pink-300 rounded"></span>
         </span>
       </h1>
       
@@ -95,7 +94,7 @@ function BlogList() {
                 </div>
                 <Link
                   to={`/blog/${post.id}`}
-                  className="mt-4 inline-block w-full text-center bg-pink-600 text-white px-4 py-2 rounded-md hover:bg-pink-700 transition-all shadow-sm hover:shadow group-hover:scale-[1.03] duration-300"
+                  className="mt-4 inline-block w-full text-center bg-gradient-to-r from-blue-500 to-pink-400 text-white px-4 py-2 rounded-md hover:opacity-90 transition-all shadow-sm hover:shadow group-hover:scale-[1.03] duration-300 font-semibold"
                 >
                   Devamını Oku
                   <svg className="w-4 h-4 ml-1 inline-block transform translate-y-0 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
