@@ -1,12 +1,36 @@
-# React + Vite
+# Blog Client - React Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Blog API ile iletişim kuran modern bir React uygulaması.
 
-Currently, two official plugins are available:
+## Özellikler
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Kullanıcı kaydı ve girişi
+- Blog gönderilerini listeleme ve görüntüleme
+- Giriş yapmış kullanıcılar için gönderi oluşturma/düzenleme/silme
 
-## Expanding the ESLint configuration
+## Teknolojiler
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React 19
+- React Router v6
+- Axios
+- Tailwind CSS
+
+## Kurulum
+
+1. Bağımlılıkları yükleyin:
+   ```
+   npm install
+   ```
+
+2. Geliştirme sunucusunu başlatın:
+   ```
+   npm run dev
+   ```
+
+## Proje Yapısı
+
+- `src/components`: Yeniden kullanılabilir UI bileşenleri
+- `src/contexts`: Uygulama genelinde state yönetimi
+- `src/pages`: Sayfa bileşenleri
+- `src/services`: API iletişimi için servisler
+- `src/utils`: Yardımcı fonksiyonlar
