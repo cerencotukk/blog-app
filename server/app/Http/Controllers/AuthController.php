@@ -19,7 +19,6 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
-        // Eğer kullanıcı zaten giriş yapmışsa hata döndür
         if (Auth::check()) {
             return response()->json([
                 'error' => 'Zaten giriş yapmış durumdasınız.'
@@ -61,7 +60,6 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        // Eğer kullanıcı zaten giriş yapmışsa hata döndür
         if (Auth::check()) {
             return response()->json([
                 'error' => 'Zaten giriş yapmış durumdasınız.'
@@ -151,7 +149,6 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        // Şifre değişikliği varsa, mevcut şifreyi kontrol et
         if ($request->new_password) {
             if (!Hash::check($request->current_password, $user->password)) {
                 return response()->json([
@@ -160,11 +157,9 @@ class AuthController extends Controller
             }
         }
 
-        // Kullanıcı bilgilerini güncelle
         $user->name = $request->name;
         $user->email = $request->email;
         
-        // Şifre değişikliği varsa güncelle
         if ($request->new_password) {
             $user->password = Hash::make($request->new_password);
         }
